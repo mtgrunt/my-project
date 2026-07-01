@@ -94,3 +94,30 @@ mod glob_demo {
     #[allow(unused_imports)]
     use std::collections::*;
 }
+
+// ── Chapter 8: Common Collections ─────────────────────────────────────────────
+pub mod vectors;
+pub mod strings;
+pub mod hashmaps;
+
+// ── Chapter 9: Error Handling ─────────────────────────────────────────────────
+pub mod error_handling;
+
+// 9.3 — custom validation type: panics at construction if value is out of range,
+// so every live Guess is guaranteed to be 1–100.
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must be between 1 and 100, got {value}.");
+        }
+        Guess { value }
+    }
+
+    pub fn value(&self) -> i32 {
+        self.value
+    }
+}
